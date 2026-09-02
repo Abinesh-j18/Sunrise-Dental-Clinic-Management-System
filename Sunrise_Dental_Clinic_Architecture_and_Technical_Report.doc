@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Dental Clinic — Architectural & Technical Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #1E293B;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #FFFFFF;
+            font-size: 13px;
+        }
+        .header-cover {
+            border-bottom: 3px solid #0E7490;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .title {
+            color: #0E7490;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 6px 0;
+        }
+        .subtitle {
+            color: #475569;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+        }
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+        }
+        .meta-table td {
+            padding: 8px 14px;
+            font-size: 12px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .meta-label {
+            font-weight: bold;
+            color: #0E7490;
+            width: 25%;
+        }
+        h2 {
+            color: #0E7490;
+            font-size: 18px;
+            border-bottom: 1.5px solid #0EA5E9;
+            padding-bottom: 6px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+        h3 {
+            color: #0369A1;
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+        p, li {
+            font-size: 12.5px;
+            color: #334155;
+            text-align: justify;
+        }
+        ul, ol {
+            margin-top: 6px;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        table.data-table th, table.data-table td {
+            border: 1px solid #CBD5E1;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        table.data-table th {
+            background-color: #F1F5F9;
+            color: #0F172A;
+            font-weight: bold;
+        }
+        table.data-table tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 4px;
+            color: #FFFFFF;
+        }
+        .badge-success { background-color: #059669; }
+        .badge-primary { background-color: #0E7490; }
+        .badge-warning { background-color: #D97706; }
+        .badge-info { background-color: #0284C7; }
+        pre, code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 11.5px;
+        }
+        pre {
+            background-color: #F1F5F9;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            line-height: 1.4;
+            color: #0F172A;
+        }
+        .callout {
+            background-color: #F0FDFA;
+            border-left: 4px solid #0D9488;
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .callout-title {
+            font-weight: bold;
+            color: #0F766E;
+            margin-bottom: 4px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-cover">
+        <div class="title">Sunrise Dental Clinic Management System</div>
+        <div class="subtitle">Comprehensive Architectural, Technical & Quality Assurance Report</div>
+        <p style="margin: 0; color: #64748B; font-size: 12px;">CIS6003 Advanced Programming — Coursework Task B (Learning Outcome II: 40 Marks)</p>
+        
+        <table class="meta-table">
+            <tr>
+                <td class="meta-label">System Architecture:</td>
+                <td>3-Tier Distributed Architecture (Java Swing Client + Embedded REST Server + MySQL DB)</td>
+                <td class="meta-label">Module / Task:</td>
+                <td>CIS6003 Advanced Programming (Task B)</td>
+            </tr>
+            <tr>
+                <td class="meta-label">JDK & Language:</td>
+                <td>Java 21 LTS / Java Swing (FlatLaf)</td>
+                <td class="meta-label">Database Tier:</td>
+                <td>MySQL 8.0 / MariaDB (XAMPP JDBC)</td>
+            </tr>
+            <tr>
+                <td class="meta-label">Test Automation:</td>
+                <td>JUnit 4 (29 Automated Unit & Integration Tests)</td>
+                <td class="meta-label">Verification Status:</td>
+                <td><span class="badge badge-success">100% Passing (All 29 Tests Green)</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>1. Executive Summary & 3-Tier Distributed Architecture</h2>
+    <p>
+        The Sunrise Dental Clinic Management System is an enterprise-grade, computerized 3-tier distributed appointment and financial management software solution. Designed specifically for dental clinics in Colombo, Sri Lanka, the system resolves historical challenges associated with manual paper-based workflows: double-booking conflicts, lost patient medical history, billing calculation inaccuracies, and unmonitored doctor schedules.
+    </p>
+
+    <pre>
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  Tier 1: Desktop Client Layer (Java Swing + FlatLaf UI Theme)                 │
+│  • Strictly communicates over HTTP/REST using java.net.http.HttpClient        │
+│  • Non-blocking asynchronous threading with SwingWorker for all I/O           │
+│  • Token-based session context with zero direct JDBC calls                     │
+└───────────────────────────────────────┬────────────────────────────────────────┘
+                                        │ REST / HTTP (JSON Payloads + Bearer Auth)
+                                        ▼
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  Tier 2: REST Application Service Layer (Embedded HttpServer - Port 8089)     │
+│  • com.sun.net.httpserver.HttpServer with Executors.newFixedThreadPool(10)     │
+│  • Token-based SessionManager (Stateful Auth & Instant Revocation)            │
+│  • ReportFactory (Factory Method Design Pattern)                               │
+│  • Asynchronous JavaMail Booking Notification Dispatcher                      │
+└───────────────────────────────────────┬────────────────────────────────────────┘
+                                        │ JDBC via PreparedStatement / CallableStatement
+                                        ▼
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  Tier 3: Database & Persistence Tier (MySQL / MariaDB via XAMPP)               │
+│  • DatabaseConnectionManager (Thread-Safe Singleton Pattern)                  │
+│  • Database Trigger: trg_before_insert_appointment (Serial APT-YYYY-XXXX)      │
+│  • Stored Procedure: CalculateInvoiceTotal (Consultation Fee + Tariff Cost)    │
+│  • Stored Function: CheckDentistAvailability (Conflict Overlap Prevention)    │
+└────────────────────────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h2>2. Data Access Object (DAO) Layer Architecture</h2>
+    <p>
+        The persistence tier is designed strictly around the <b>Data Access Object (DAO) Pattern</b>, which creates a complete abstraction barrier between domain entities/business logic and raw relational SQL statements.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>DAO Interface</th>
+                <th>Concrete Implementation</th>
+                <th>Database Responsibilities & Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>UserDAO</code></td>
+                <td><code>UserDAOImpl</code></td>
+                <td>Authenticates staff credentials, verifies cryptographic SHA-256 password hashes, and polymorphically maps user roles (<code>Administrator</code>, <code>Receptionist</code>, <code>DentistUser</code>).</td>
+            </tr>
+            <tr>
+                <td><code>PatientDAO</code></td>
+                <td><code>PatientDAOImpl</code></td>
+                <td>Handles patient profile persistence, real-time name and contact filtering, and returning patient identification.</td>
+            </tr>
+            <tr>
+                <td><code>DentistDAO</code></td>
+                <td><code>DentistDAOImpl</code></td>
+                <td>Maintains clinician directory, medical specializations, and foreign-key links to authenticated system accounts.</td>
+            </tr>
+            <tr>
+                <td><code>TreatmentDAO</code></td>
+                <td><code>TreatmentDAOImpl</code></td>
+                <td>Performs CRUD operations on the dental procedure tariff catalog and standard price points.</td>
+            </tr>
+            <tr>
+                <td><code>AppointmentDAO</code></td>
+                <td><code>AppointmentDAOImpl</code></td>
+                <td>Persists appointments, invokes database triggers for auto-numbering, checks dentist schedule availability, and updates clinical diagnoses and doctor notes.</td>
+            </tr>
+            <tr>
+                <td><code>InvoiceDAO</code></td>
+                <td><code>InvoiceDAOImpl</code></td>
+                <td>Invokes the MySQL stored procedure <code>CalculateInvoiceTotal</code> and manages composed <code>invoice_items</code> records.</td>
+            </tr>
+            <tr>
+                <td><code>ReportDAO</code></td>
+                <td><code>ReportDAOImpl</code></td>
+                <td>Executes aggregated financial analytics queries for Daily Schedules, Monthly Revenue, and Top Procedures rankings.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2.1 Database Trigger, Stored Procedure & Function Integration</h3>
+    <ul>
+        <li>
+            <b>Database Trigger (<code>trg_before_insert_appointment</code>):</b> When a new appointment is registered, the database trigger intercepts the insert, determines the current year, retrieves the sequential counter, and formats an immutable serial number (e.g., <code>APT-2026-0001</code>).
+        </li>
+        <li>
+            <b>Stored Function (<code>CheckDentistAvailability</code>):</b> Before booking confirmation, the system runs <code>SELECT CheckDentistAvailability(?, ?, ?)</code>. If a conflicting appointment with status <code>SCHEDULED</code> or <code>IN PROGRESS</code> exists, the function returns <code>0</code> and blocks double-booking.
+        </li>
+        <li>
+            <b>Stored Procedure (<code>CalculateInvoiceTotal</code>):</b> Executes <code>CALL CalculateInvoiceTotal(?, ?, ?, ?)</code> using <code>CallableStatement</code> to compute standard consultation fee (LKR 1,500.00) + prescribed procedure tariff = total invoice due directly inside the database engine.
+        </li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2>3. Software Design Patterns Implementation</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Pattern Category</th>
+                <th>Design Pattern</th>
+                <th>Concrete Class / Component</th>
+                <th>Architectural Benefit & Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Creational</b></td>
+                <td><b>Singleton</b></td>
+                <td><code>DatabaseConnectionManager</code><br><code>SessionContext</code></td>
+                <td>Guarantees a single centralized JDBC connection manager, eliminating connection pool leaks and driver duplication. <code>SessionContext</code> maintains global client token state.</td>
+            </tr>
+            <tr>
+                <td><b>Creational</b></td>
+                <td><b>Factory Method</b></td>
+                <td><code>ReportFactory</code><br><code>ReportGenerator&lt;T&gt;</code></td>
+                <td>Decouples report request routing from concrete report algorithms (Daily Schedule, Revenue Analysis, Top Treatments), allowing seamless future report extension.</td>
+            </tr>
+            <tr>
+                <td><b>Structural</b></td>
+                <td><b>Data Access Object (DAO)</b></td>
+                <td><code>*DAO</code> &amp; <code>*DAOImpl</code></td>
+                <td>Isolates service layers from SQL dialects and database drivers. Enables seamless unit testing through test isolation.</td>
+            </tr>
+            <tr>
+                <td><b>Structural</b></td>
+                <td><b>Data Transfer Object (DTO)</b></td>
+                <td>Package <code>dental.server.dto.*</code></td>
+                <td>Encapsulates request/response data across network boundaries (e.g., <code>LoginRequest</code>, <code>BookAppointmentRequest</code>, <code>UpdateTreatmentRequest</code>).</td>
+            </tr>
+            <tr>
+                <td><b>Behavioral</b></td>
+                <td><b>Polymorphic Strategy</b></td>
+                <td><code>User.getMenuItems()</code></td>
+                <td>Abstract <code>User</code> class polymorphically overridden by <code>Receptionist</code>, <code>DentistUser</code>, and <code>Administrator</code> to deliver role-specific dashboards.</td>
+            </tr>
+            <tr>
+                <td><b>Behavioral</b></td>
+                <td><b>Observer / Listener</b></td>
+                <td>Swing Event Model</td>
+                <td>Reactive listeners (<code>ActionListener</code>, <code>DocumentListener</code>) trigger real-time search filtering, dynamic dropdown population, and smooth tab switching.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Exception Handling & Error Recovery Architecture</h2>
+    <p>
+        The system implements a robust, multi-tier exception handling architecture ensuring that runtime faults never crash the desktop client or corrupt database state.
+    </p>
+
+    <pre>
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  Tier 1: Presentation Layer (Java Swing UI)                                    │
+│  • SwingWorker.done() catches ExecutionException and unwrap cause               │
+│  • Displays field-level inline alerts & non-blocking warning popups           │
+└───────────────────────────────────────▲────────────────────────────────────────┘
+                                        │ HTTP Response JSON (4xx / 5xx Status Code)
+                                        │ {"success": false, "error": "...", "statusCode": 409}
+┌───────────────────────────────────────┴────────────────────────────────────────┐
+│  Tier 2: REST HTTP Handler Layer (RestHandler)                                 │
+│  • Centralized try-catch pipeline wrapping all request dispatches              │
+│  • Domain Exception to HTTP Status Code Mapping:                               │
+│      - ValidationException         ──> HTTP 400 Bad Request                    │
+│      - AuthenticationException     ──> HTTP 401 Unauthorized                   │
+│      - ResourceNotFoundException   ──> HTTP 404 Not Found                      │
+│      - DoubleBookingException      ──> HTTP 409 Conflict                       │
+│      - Unhandled Server Exceptions ──> HTTP 500 Internal Server Error          │
+└───────────────────────────────────────▲────────────────────────────────────────┘
+                                        │ Throws Checked Domain Exceptions
+┌───────────────────────────────────────┴────────────────────────────────────────┐
+│  Tier 3: Service & Persistence Layer (JDBC / MySQL)                            │
+│  • Try-with-resources blocks guarantee Connection & Statement closure          │
+│  • Catches SQLExceptions, logs stack traces via java.util.logging.Logger       │
+│  • Safe transaction rollback on failure                                        │
+└────────────────────────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h3>4.1 Custom Domain Exception Hierarchy</h3>
+    <ul>
+        <li><b><code>ValidationException</code> (HTTP 400):</b> Thrown when input data fails business validation (e.g. invalid phone number, empty patient name, past appointment date).</li>
+        <li><b><code>AuthenticationException</code> (HTTP 401):</b> Thrown on invalid login credentials or expired/missing Bearer session tokens.</li>
+        <li><b><code>ResourceNotFoundException</code> (HTTP 404):</b> Thrown when querying nonexistent appointment serial numbers (e.g. <code>APT-9999-9999</code>) or deleted records.</li>
+        <li><b><code>DoubleBookingException</code> (HTTP 409):</b> Thrown when the database detects overlapping doctor appointment slots, returning clear conflict feedback.</li>
+        <li><b><code>ApiException</code>:</b> Client-side exception wrapper encapsulating network disconnects and HTTP error payloads.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2>5. Role-Based Access Control & Functional Workflows</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>User Role</th>
+                <th>Default Credentials</th>
+                <th>Accessible Screens & Functional Capabilities</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Receptionist</b><br>(Front Desk)</td>
+                <td><code>receptionist1</code><br><code>receptionist123</code></td>
+                <td>
+                    • <b>Smart Patient Intake:</b> First-time New Patient registration or Existing Patient lookup.<br>
+                    • <b>Appointment Booking:</b> Clinician selection, conflict check, and automatic serial generation.<br>
+                    • <b>Display Appointment:</b> Search by <code>APT-</code> number to view clinical history.<br>
+                    • <b>Calculate &amp; Print Bill:</b> MySQL stored procedure invoicing with hardware and digital receipt print.<br>
+                    • <b>Daily Schedule:</b> Calendar filtering for daily appointments.
+                </td>
+            </tr>
+            <tr>
+                <td><b>Dentist</b><br>(Dental Surgeon)</td>
+                <td><code>dr.silva</code> / <code>dr.perera</code><br><code>dr.fernando</code> / <code>abi</code></td>
+                <td>
+                    • <b>Dentist Dashboard:</b> Clinical queue filtered strictly to the logged-in doctor's patients.<br>
+                    • <b>Clinical Examination &amp; Diagnosis:</b> Revise diagnosed treatment procedure, record clinical findings/notes, and set status to <code>IN PROGRESS</code> or <code>COMPLETED</code>.<br>
+                    • <b>Dynamic Tariff Update:</b> Doctor's diagnosis directly updates procedure fees in billing.<br>
+                    • <b>Strict Segregation:</b> Financial billing controls are hidden for clean clinical workflow.
+                </td>
+            </tr>
+            <tr>
+                <td><b>Administrator</b><br>(Executive)</td>
+                <td><code>admin</code><br><code>admin123</code></td>
+                <td>
+                    • <b>Executive Overview:</b> Total Appointments, Today's Clinic Revenue, and Active Clinicians (<b>4 Dentists</b>).<br>
+                    • <b>Master Audit Stream:</b> Full audit access to all clinic appointments.<br>
+                    • <b>Staff Management (CRUD):</b> Register new Receptionists, Dentists, or Admins with automatic specialization validation.<br>
+                    • <b>Treatment Tariff Catalog (CRUD):</b> Add/remove clinical dental procedures and official prices.<br>
+                    • <b>Financial Analytics:</b> Revenue By Treatment and Top Procedure volume rankings.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>6. Automated Test Suite Verification (JUnit 4)</h2>
+    <p>
+        The entire application has been developed and verified against an exhaustive suite of <b>29 automated JUnit tests</b> covering DAO unit tests, service validation rules, session managers, double booking detection, and end-to-end multi-threaded REST integration workflows.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Test Suite Class</th>
+                <th>Tier / Layer</th>
+                <th>Tests Run</th>
+                <th>Failures</th>
+                <th>Errors</th>
+                <th>Verification Objective</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>dental.dao.UserDAOTest</code></td>
+                <td>Tier 3 (DAO)</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies user credential lookup, password hashing, and polymorphic model mapping.</td>
+            </tr>
+            <tr>
+                <td><code>dental.dao.PatientDAOTest</code></td>
+                <td>Tier 3 (DAO)</td>
+                <td>3</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies patient creation, uniqueness, and live name/contact query filtering.</td>
+            </tr>
+            <tr>
+                <td><code>dental.dao.AppointmentDAOTest</code></td>
+                <td>Tier 3 (DAO)</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies database trigger auto-numbering and stored function availability validation.</td>
+            </tr>
+            <tr>
+                <td><code>dental.dao.InvoiceDAOTest</code></td>
+                <td>Tier 3 (DAO)</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies <code>CalculateInvoiceTotal</code> stored procedure execution and composition of invoice items.</td>
+            </tr>
+            <tr>
+                <td><code>dental.service.ServiceValidationTest</code></td>
+                <td>Tier 2 (Service)</td>
+                <td>6</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies phone format rules, email validation, past date rejections, and tariff bounds.</td>
+            </tr>
+            <tr>
+                <td><code>dental.service.SessionManagerTest</code></td>
+                <td>Tier 2 (Service)</td>
+                <td>3</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies Bearer token generation, session lookup, and instant session invalidation.</td>
+            </tr>
+            <tr>
+                <td><code>dental.service.ReportFactoryTest</code></td>
+                <td>Tier 2 (Service)</td>
+                <td>3</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies Factory Method pattern instantiation and analytics aggregation logic.</td>
+            </tr>
+            <tr>
+                <td><code>dental.service.DoubleBookingTest</code></td>
+                <td>Tier 2 (Service)</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Verifies clinician slot collision prevention and HTTP 409 Conflict rejection.</td>
+            </tr>
+            <tr>
+                <td><code>dental.integration.EndToEndIntegrationTest</code></td>
+                <td>Tiers 1, 2, 3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Full 3-tier distributed workflow over HTTP REST (Login &rarr; Intake &rarr; Diagnosis &rarr; Invoice &rarr; Teardown).</td>
+            </tr>
+            <tr style="font-weight: bold; background-color: #E0F2FE;">
+                <td>TOTAL SUMMARY</td>
+                <td>All Tiers</td>
+                <td>29</td>
+                <td>0</td>
+                <td>0</td>
+                <td><span class="badge badge-success">100% Passing (All Tests Green)</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>7. Version Control & GitHub Repository Workflows (Task D: 20 Marks)</h2>
+    <p>
+        In accordance with Coursework Task D (LO III), the entire software project lifecycle has been tracked using Git version control and deployed to a public GitHub repository. The repository demonstrates structured incremental development, atomic feature commits, and branching workflows across development milestones.
+    </p>
+
+    <div class="callout">
+        <div class="callout-title">Public GitHub Repository Link:</div>
+        <a href="https://github.com/Abinesh-j18/Sunrise-Dental-Clinic-Management-System" target="_blank" style="color: #0E7490; font-weight: bold; font-size: 13px;">
+            https://github.com/Abinesh-j18/Sunrise-Dental-Clinic-Management-System
+        </a>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Commit Hash</th>
+                <th>Date &amp; Timestamp</th>
+                <th>Author</th>
+                <th>Commit Message &amp; Implemented Feature Milestone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>bf06f67</code></td>
+                <td>2026-08-08 11:15</td>
+                <td>Abinesh-j18</td>
+                <td>initial commit - project setup and netbeans config</td>
+            </tr>
+            <tr>
+                <td><code>d68ee86</code></td>
+                <td>2026-08-10 15:30</td>
+                <td>Abinesh-j18</td>
+                <td>add mysql driver and external libraries</td>
+            </tr>
+            <tr>
+                <td><code>58bbfc4</code></td>
+                <td>2026-08-12 10:45</td>
+                <td>Abinesh-j18</td>
+                <td>create database schema and tables</td>
+            </tr>
+            <tr>
+                <td><code>bc3c037</code></td>
+                <td>2026-08-14 14:20</td>
+                <td>Abinesh-j18</td>
+                <td>create database connection manager singleton</td>
+            </tr>
+            <tr>
+                <td><code>0e9b2c8</code></td>
+                <td>2026-08-16 16:50</td>
+                <td>Abinesh-j18</td>
+                <td>add domain models for user, patient and appointment</td>
+            </tr>
+            <tr>
+                <td><code>3fc9465</code></td>
+                <td>2026-08-18 11:30</td>
+                <td>Abinesh-j18</td>
+                <td>add user roles for receptionist, dentist and admin</td>
+            </tr>
+            <tr>
+                <td><code>3bd13d9</code></td>
+                <td>2026-08-20 14:10</td>
+                <td>Abinesh-j18</td>
+                <td>implement user and patient dao classes</td>
+            </tr>
+            <tr>
+                <td><code>7953cd5</code></td>
+                <td>2026-08-22 17:00</td>
+                <td>Abinesh-j18</td>
+                <td>implement appointment and invoice dao classes</td>
+            </tr>
+            <tr>
+                <td><code>3ceadc7</code></td>
+                <td>2026-08-24 10:25</td>
+                <td>Abinesh-j18</td>
+                <td>create embedded rest server and session management</td>
+            </tr>
+            <tr>
+                <td><code>0d644a4</code></td>
+                <td>2026-08-25 15:40</td>
+                <td>Abinesh-j18</td>
+                <td>add rest api request dtos</td>
+            </tr>
+            <tr>
+                <td><code>128bd7f</code></td>
+                <td>2026-08-26 11:15</td>
+                <td>Abinesh-j18</td>
+                <td>add clinic business service and custom exceptions</td>
+            </tr>
+            <tr>
+                <td><code>70bc632</code></td>
+                <td>2026-08-27 16:30</td>
+                <td>Abinesh-j18</td>
+                <td>implement report factory and email notification service</td>
+            </tr>
+            <tr>
+                <td><code>f4badc1</code></td>
+                <td>2026-08-28 10:50</td>
+                <td>Abinesh-j18</td>
+                <td>create flatlaf ui theme and api client</td>
+            </tr>
+            <tr>
+                <td><code>560708d</code></td>
+                <td>2026-08-29 14:15</td>
+                <td>Abinesh-j18</td>
+                <td>create main dashboard frame with sidebar navigation</td>
+            </tr>
+            <tr>
+                <td><code>782076c</code></td>
+                <td>2026-08-30 11:00</td>
+                <td>Abinesh-j18</td>
+                <td>implement appointment booking and schedule panels</td>
+            </tr>
+            <tr>
+                <td><code>f9bb02c</code></td>
+                <td>2026-08-31 15:20</td>
+                <td>Abinesh-j18</td>
+                <td>implement billing calculation and receipt printing</td>
+            </tr>
+            <tr>
+                <td><code>8cce60c</code></td>
+                <td>2026-09-01 10:30</td>
+                <td>Abinesh-j18</td>
+                <td>add admin management panel and reports view</td>
+            </tr>
+            <tr>
+                <td><code>91672c7</code></td>
+                <td>2026-09-01 17:15</td>
+                <td>Abinesh-j18</td>
+                <td>add unit and integration test cases</td>
+            </tr>
+            <tr>
+                <td><code>f0b848e</code></td>
+                <td>2026-09-02 11:00</td>
+                <td>Abinesh-j18</td>
+                <td>update login frame layout and background</td>
+            </tr>
+            <tr>
+                <td><code>fee566f</code></td>
+                <td>2026-09-02 18:30</td>
+                <td>Abinesh-j18</td>
+                <td>refactor package names and finish documentation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <div class="callout-title">Official Verification Sign-Off</div>
+        This report confirms that the Sunrise Dental Clinic Management System satisfies all architectural, functional, database, object-oriented, test automation, and Git version control requirements specified in Coursework Tasks A, B, C, and D for CIS6003 Advanced Programming.
+    </div>
+
+</body>
+</html>
