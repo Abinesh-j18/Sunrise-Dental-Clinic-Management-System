@@ -159,8 +159,8 @@ BEFORE INSERT ON `appointments`
 FOR EACH ROW
 BEGIN
     DECLARE `next_seq` INT DEFAULT 1;
-    DECLARE `appt_year` VARCHAR(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-    DECLARE `pattern` VARCHAR(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+    DECLARE `appt_year` VARCHAR(10);
+    DECLARE `pattern` VARCHAR(30);
     
     IF NEW.`appointment_date` IS NOT NULL THEN
         SET `appt_year` = CAST(YEAR(NEW.`appointment_date`) AS CHAR);
