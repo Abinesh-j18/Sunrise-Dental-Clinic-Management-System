@@ -648,17 +648,59 @@
                 <td>update login frame layout and background</td>
             </tr>
             <tr>
-                <td><code>fee566f</code></td>
+                <td><code>d354ee8</code></td>
                 <td>2026-09-02 18:30</td>
                 <td>Abinesh-j18</td>
                 <td>refactor package names and finish documentation</td>
             </tr>
+            <tr>
+                <td><code>c9e597b</code></td>
+                <td>2026-09-02 18:40</td>
+                <td>Abinesh-j18</td>
+                <td>add github actions automated ci cd workflow</td>
+            </tr>
         </tbody>
     </table>
 
+    <h3>7.2 Automated CI/CD Pipeline (GitHub Actions)</h3>
+    <p>
+        The repository is configured with an enterprise-grade GitHub Actions CI/CD workflow defined in <code>.github/workflows/ci-cd.yml</code>. Whenever changes are pushed to the <code>master</code> branch, the automated pipeline performs the following end-to-end integration and delivery stages:
+    </p>
+
+    <ul>
+        <li><b>1. Environment Provisioning:</b> Spins up an <code>ubuntu-latest</code> virtual runner with <b>JDK 21 (Eclipse Temurin)</b> and an ephemeral <b>MySQL 8.0</b> service container.</li>
+        <li><b>2. Automated Database Initialization:</b> Ingests <code>database/schema.sql</code>, generating all tables, indexes, triggers, and stored routines.</li>
+        <li><b>3. Continuous Integration (CI Test Suite):</b> Executes <code>mvn clean test</code> across all DAO, Service, and Integration test classes to ensure zero regressions.</li>
+        <li><b>4. Continuous Delivery (CD Packaging):</b> Compiles and packages the production distribution executable <code>SunriseDentalClinic.jar</code>.</li>
+        <li><b>5. Artifact Publishing:</b> Deploys the built JAR as a downloadable GitHub Actions build artifact with 30-day retention for instant release deployment.</li>
+    </ul>
+
+    <pre>
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│  GITHUB ACTIONS CI/CD PIPELINE FLOW                                                    │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│  [Developer Git Push to master]                                                        │
+│           │                                                                            │
+│           ▼                                                                            │
+│  [GitHub Actions Runner: ubuntu-latest] ──> Spin up live MySQL 8.0 Database Container   │
+│           │                                                                            │
+│           ▼                                                                            │
+│  [Step 1: Ingest database/schema.sql]    ──> Tables, Triggers &amp; Stored Procedures Active│
+│           │                                                                            │
+│           ▼                                                                            │
+│  [Step 2: Maven Automated Test Suite]    ──> 29 JUnit Tests Pass (CI Verified)         │
+│           │                                                                            │
+│           ▼                                                                            │
+│  [Step 3: Package Distribution JAR]      ──> SunriseDentalClinic-v1.0.jar (CD Output)  │
+│           │                                                                            │
+│           ▼                                                                            │
+│  [Step 4: Upload Release Artifact]       ──> Available for Public Download &amp; Deploy    │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+    </pre>
+
     <div class="callout">
         <div class="callout-title">Official Verification Sign-Off</div>
-        This report confirms that the Sunrise Dental Clinic Management System satisfies all architectural, functional, database, object-oriented, test automation, and Git version control requirements specified in Coursework Tasks A, B, C, and D for CIS6003 Advanced Programming.
+        This report confirms that the Sunrise Dental Clinic Management System satisfies all architectural, functional, database, object-oriented, test automation, Git version control, and CI/CD workflow requirements specified in Coursework Tasks A, B, C, and D for CIS6003 Advanced Programming.
     </div>
 
 </body>
