@@ -24,13 +24,13 @@ import java.io.IOException;
 public class LoginFrame extends JFrame {
     private final ApiClient apiClient;
 
-    private JTextField txtUsername;
-    private JPasswordField txtPassword;
+    
+    
     private JButton btnTogglePassword;
-    private JButton btnLogin;
+    
     private JPanel errorBanner;
     private JLabel lblErrorText;
-    private JProgressBar progressBar;
+    
     private boolean isPasswordVisible = false;
 
     public LoginFrame() {
@@ -272,23 +272,122 @@ public class LoginFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cardPanel = new javax.swing.JPanel();
+        lblClinicBrand = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
+        lblSub = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
+        progressBar = new javax.swing.JProgressBar();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sunrise Dental Clinic â€” Staff Portal");
+        setResizable(false);
+
+        cardPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblClinicBrand.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblClinicBrand.setForeground(new java.awt.Color(13, 92, 117));
+        lblClinicBrand.setText("SUNRISE DENTAL CLINIC");
+
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblWelcome.setText("Staff Portal Login");
+
+        lblSub.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblSub.setForeground(new java.awt.Color(102, 102, 102));
+        lblSub.setText("Sign in with your authorized clinic credentials.");
+
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblUsername.setText("Username:");
+
+        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblPassword.setText("Password:");
+
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setText("Sign In to System");
+
+        progressBar.setIndeterminate(true);
+
+        javax.swing.GroupLayout cardPanelLayout = new javax.swing.GroupLayout(cardPanel);
+        cardPanel.setLayout(cardPanelLayout);
+        cardPanelLayout.setHorizontalGroup(
+            cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardPanelLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblClinicBrand)
+                    .addComponent(lblWelcome)
+                    .addComponent(lblSub)
+                    .addComponent(lblUsername)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        cardPanelLayout.setVerticalGroup(
+            cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblClinicBrand)
+                .addGap(4, 4, 4)
+                .addComponent(lblWelcome)
+                .addGap(4, 4, 4)
+                .addComponent(lblSub)
+                .addGap(20, 20, 20)
+                .addComponent(lblUsername)
+                .addGap(6, 6, 6)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(lblPassword)
+                .addGap(6, 6, 6)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(220, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JPanel cardPanel;
+    private javax.swing.JLabel lblClinicBrand;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblSub;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblWelcome;
+    private javax.swing.JProgressBar progressBar;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

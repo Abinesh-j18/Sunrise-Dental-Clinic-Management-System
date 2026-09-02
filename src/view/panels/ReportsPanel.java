@@ -30,7 +30,7 @@ public class ReportsPanel extends JPanel {
     private final ApiClient apiClient;
     private final MainDashboardFrame parentFrame;
 
-    private JTabbedPane tabbedPane;
+    
 
     // Tab 1: Daily Appointments
     private JComboBox<DentistFilterItem> cmbDailyDentist;
@@ -43,7 +43,7 @@ public class ReportsPanel extends JPanel {
     // Tab 2: Revenue By Treatment
     private JComboBox<String> cmbRevenueMonth;
     private JSpinner spRevenueYear;
-    private JTable tblRevenue;
+    
     private DefaultTableModel modelRevenue;
     private JProgressBar pbRevenue;
     private JLabel lblRevenueSummary;
@@ -469,19 +469,136 @@ public class ReportsPanel extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        headerPanel = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        tabbedPane = new javax.swing.JTabbedPane();
+        pnlDaily = new javax.swing.JPanel();
+        scrollDaily = new javax.swing.JScrollPane();
+        tblDaily = new javax.swing.JTable();
+        pnlRevenue = new javax.swing.JPanel();
+        scrollRevenue = new javax.swing.JScrollPane();
+        tblRevenue = new javax.swing.JTable();
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setText("Clinic Analytics & Management Reports");
+
+        lblDesc.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblDesc.setText("Exportable operational analytics covering daily schedules, revenue breakdown, and procedure metrics.");
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblDesc)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addGap(4, 4, 4)
+                .addComponent(lblDesc))
+        );
+
+        pnlDaily.setLayout(new java.awt.BorderLayout());
+
+        tblDaily.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Appt #", "Time", "Patient Name", "Dentist", "Treatment"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollDaily.setViewportView(tblDaily);
+
+        pnlDaily.add(scrollDaily, java.awt.BorderLayout.CENTER);
+
+        tabbedPane.addTab("Daily Appointments Schedule", pnlDaily);
+
+        pnlRevenue.setLayout(new java.awt.BorderLayout());
+
+        tblRevenue.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Treatment Procedure", "Count", "Unit Price (LKR)", "Total Revenue (LKR)"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollRevenue.setViewportView(tblRevenue);
+
+        pnlRevenue.add(scrollRevenue, java.awt.BorderLayout.CENTER);
+
+        tabbedPane.addTab("Revenue By Treatment", pnlRevenue);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlDaily;
+    private javax.swing.JPanel pnlRevenue;
+    private javax.swing.JScrollPane scrollDaily;
+    private javax.swing.JScrollPane scrollRevenue;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTable tblDaily;
+    private javax.swing.JTable tblRevenue;
     // End of variables declaration//GEN-END:variables
 }

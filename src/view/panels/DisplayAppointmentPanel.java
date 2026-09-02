@@ -31,8 +31,8 @@ public class DisplayAppointmentPanel extends JPanel {
     private final ApiClient apiClient;
     private final MainDashboardFrame parentFrame;
 
-    private JTextField txtSearchApptNumber;
-    private JButton btnSearch;
+    
+    
     private JProgressBar progressBar;
     private JLabel lblStatus;
 
@@ -547,19 +547,165 @@ public class DisplayAppointmentPanel extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        headerPanel = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        searchCard = new javax.swing.JPanel();
+        lblSearch = new javax.swing.JLabel();
+        txtSearchApptNumber = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        detailsCard = new javax.swing.JPanel();
+        lblPatientInfo = new javax.swing.JLabel();
+        lblDentistInfo = new javax.swing.JLabel();
+        lblTreatmentInfo = new javax.swing.JLabel();
+        lblDateInfo = new javax.swing.JLabel();
+        lblStatusInfo = new javax.swing.JLabel();
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setText("View Appointment Details");
+
+        lblDesc.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblDesc.setText("Search and retrieve full appointment files including patient history, assigned dentist, and clinical notes.");
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblDesc)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addGap(4, 4, 4)
+                .addComponent(lblDesc))
+        );
+
+        searchCard.setBackground(new java.awt.Color(255, 255, 255));
+        searchCard.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(226, 232, 240), 1, true));
+
+        lblSearch.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblSearch.setText("Appointment # :");
+
+        txtSearchApptNumber.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+
+        btnSearch.setText("Search Appointment");
+
+        javax.swing.GroupLayout searchCardLayout = new javax.swing.GroupLayout(searchCard);
+        searchCard.setLayout(searchCardLayout);
+        searchCardLayout.setHorizontalGroup(
+            searchCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCardLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblSearch)
+                .addGap(10, 10, 10)
+                .addComponent(txtSearchApptNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(360, Short.MAX_VALUE))
+        );
+        searchCardLayout.setVerticalGroup(
+            searchCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCardLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(searchCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearch)
+                    .addComponent(txtSearchApptNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
+        );
+
+        detailsCard.setBackground(new java.awt.Color(255, 255, 255));
+        detailsCard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Appointment Summary & Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+
+        lblPatientInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblPatientInfo.setText("Patient: --");
+
+        lblDentistInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblDentistInfo.setText("Dentist: --");
+
+        lblTreatmentInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblTreatmentInfo.setText("Treatment: --");
+
+        lblDateInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblDateInfo.setText("Date & Time: --");
+
+        lblStatusInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblStatusInfo.setText("Booking Status: --");
+
+        javax.swing.GroupLayout detailsCardLayout = new javax.swing.GroupLayout(detailsCard);
+        detailsCard.setLayout(detailsCardLayout);
+        detailsCardLayout.setHorizontalGroup(
+            detailsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsCardLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(detailsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPatientInfo)
+                    .addComponent(lblDentistInfo)
+                    .addComponent(lblTreatmentInfo)
+                    .addComponent(lblDateInfo)
+                    .addComponent(lblStatusInfo))
+                .addContainerGap(500, Short.MAX_VALUE))
+        );
+        detailsCardLayout.setVerticalGroup(
+            detailsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsCardLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblPatientInfo)
+                .addGap(12, 12, 12)
+                .addComponent(lblDentistInfo)
+                .addGap(12, 12, 12)
+                .addComponent(lblTreatmentInfo)
+                .addGap(12, 12, 12)
+                .addComponent(lblDateInfo)
+                .addGap(12, 12, 12)
+                .addComponent(lblStatusInfo)
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(detailsCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(searchCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(detailsCard, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JPanel detailsCard;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel lblDateInfo;
+    private javax.swing.JLabel lblDentistInfo;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblPatientInfo;
+    private javax.swing.JLabel lblSearch;
+    private javax.swing.JLabel lblStatusInfo;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTreatmentInfo;
+    private javax.swing.JPanel searchCard;
+    private javax.swing.JTextField txtSearchApptNumber;
     // End of variables declaration//GEN-END:variables
 }

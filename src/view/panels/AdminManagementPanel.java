@@ -27,9 +27,9 @@ public class AdminManagementPanel extends JPanel {
     private final ApiClient apiClient;
     private final MainDashboardFrame parentFrame;
 
-    private JTable tblTreatments;
+    
     private DefaultTableModel modelTreatments;
-    private JTable tblStaff;
+    
     private DefaultTableModel modelStaff;
     private JProgressBar progressBar;
     private JLabel lblStatus;
@@ -667,19 +667,136 @@ public class AdminManagementPanel extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        headerPanel = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        tabbedPane = new javax.swing.JTabbedPane();
+        pnlStaff = new javax.swing.JPanel();
+        scrollStaff = new javax.swing.JScrollPane();
+        tblStaff = new javax.swing.JTable();
+        pnlTreatments = new javax.swing.JPanel();
+        scrollTreatments = new javax.swing.JScrollPane();
+        tblTreatments = new javax.swing.JTable();
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setText("Clinic Administration & Staff Directory");
+
+        lblDesc.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblDesc.setText("Manage clinical users, role authorizations, and procedure pricing catalogs.");
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblDesc)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addGap(4, 4, 4)
+                .addComponent(lblDesc))
+        );
+
+        pnlStaff.setLayout(new java.awt.BorderLayout());
+
+        tblStaff.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Username", "Full Name", "Role", "Contact"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollStaff.setViewportView(tblStaff);
+
+        pnlStaff.add(scrollStaff, java.awt.BorderLayout.CENTER);
+
+        tabbedPane.addTab("Staff Members Directory", pnlStaff);
+
+        pnlTreatments.setLayout(new java.awt.BorderLayout());
+
+        tblTreatments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Treatment Type", "Cost (LKR)", "Clinical Description"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollTreatments.setViewportView(tblTreatments);
+
+        pnlTreatments.add(scrollTreatments, java.awt.BorderLayout.CENTER);
+
+        tabbedPane.addTab("Treatment Catalog & Pricing", pnlTreatments);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlStaff;
+    private javax.swing.JPanel pnlTreatments;
+    private javax.swing.JScrollPane scrollStaff;
+    private javax.swing.JScrollPane scrollTreatments;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTable tblStaff;
+    private javax.swing.JTable tblTreatments;
     // End of variables declaration//GEN-END:variables
 }

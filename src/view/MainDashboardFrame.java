@@ -27,8 +27,8 @@ public class MainDashboardFrame extends JFrame {
     private final ApiClient apiClient;
 
     private CardLayout cardLayout;
-    private JPanel mainContentPanel;
-    private JPanel sidebarPanel;
+    
+    
 
     private OverviewPanel overviewPanel;
     private RegisterAppointmentPanel registerAppointmentPanel;
@@ -311,23 +311,137 @@ public class MainDashboardFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        topHeader = new javax.swing.JPanel();
+        lblClinicTitle = new javax.swing.JLabel();
+        lblUserInfo = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
+        sidebarPanel = new javax.swing.JPanel();
+        btnNavDashboard = new javax.swing.JButton();
+        btnNavBookAppt = new javax.swing.JButton();
+        btnNavViewAppt = new javax.swing.JButton();
+        btnNavBilling = new javax.swing.JButton();
+        btnNavReports = new javax.swing.JButton();
+        btnNavAdmin = new javax.swing.JButton();
+        btnNavHelp = new javax.swing.JButton();
+        mainContentPanel = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Sunrise Dental Clinic Management System â€” Staff Portal");
+
+        topHeader.setBackground(new java.awt.Color(13, 92, 117));
+        topHeader.setPreferredSize(new java.awt.Dimension(1200, 65));
+
+        lblClinicTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblClinicTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblClinicTitle.setText("Sunrise Dental Clinic â€” Staff Portal");
+
+        lblUserInfo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lblUserInfo.setForeground(new java.awt.Color(255, 255, 255));
+        lblUserInfo.setText("Staff Member");
+
+        btnLogout.setText("Sign Out");
+
+        javax.swing.GroupLayout topHeaderLayout = new javax.swing.GroupLayout(topHeader);
+        topHeader.setLayout(topHeaderLayout);
+        topHeaderLayout.setHorizontalGroup(
+            topHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topHeaderLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblClinicTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
+                .addComponent(lblUserInfo)
+                .addGap(16, 16, 16)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        topHeaderLayout.setVerticalGroup(
+            topHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topHeaderLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(topHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblClinicTitle)
+                    .addComponent(lblUserInfo)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
+
+        getContentPane().add(topHeader, java.awt.BorderLayout.NORTH);
+
+        sidebarPanel.setBackground(new java.awt.Color(19, 30, 43));
+        sidebarPanel.setPreferredSize(new java.awt.Dimension(240, 700));
+
+        btnNavDashboard.setText("Overview Dashboard");
+
+        btnNavBookAppt.setText("Book Appointment");
+
+        btnNavViewAppt.setText("View Appointments");
+
+        btnNavBilling.setText("Billing & Invoices");
+
+        btnNavReports.setText("Clinic Reports");
+
+        btnNavAdmin.setText("Staff & Catalog Admin");
+
+        btnNavHelp.setText("Help & Guidelines");
+
+        javax.swing.GroupLayout sidebarPanelLayout = new javax.swing.GroupLayout(sidebarPanel);
+        sidebarPanel.setLayout(sidebarPanelLayout);
+        sidebarPanelLayout.setHorizontalGroup(
+            sidebarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(sidebarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNavDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(btnNavBookAppt, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(btnNavViewAppt, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(btnNavBilling, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(btnNavReports, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(btnNavAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(btnNavHelp, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        sidebarPanelLayout.setVerticalGroup(
+            sidebarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btnNavDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNavBookAppt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNavViewAppt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNavBilling, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNavReports, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNavAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNavHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(300, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(sidebarPanel, java.awt.BorderLayout.WEST);
+
+        mainContentPanel.setBackground(new java.awt.Color(248, 248, 248));
+        mainContentPanel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainContentPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnNavAdmin;
+    private javax.swing.JButton btnNavBilling;
+    private javax.swing.JButton btnNavBookAppt;
+    private javax.swing.JButton btnNavDashboard;
+    private javax.swing.JButton btnNavHelp;
+    private javax.swing.JButton btnNavReports;
+    private javax.swing.JButton btnNavViewAppt;
+    private javax.swing.JLabel lblClinicTitle;
+    private javax.swing.JLabel lblUserInfo;
+    private javax.swing.JPanel mainContentPanel;
+    private javax.swing.JPanel sidebarPanel;
+    private javax.swing.JPanel topHeader;
     // End of variables declaration//GEN-END:variables
 }

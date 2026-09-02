@@ -32,22 +32,22 @@ public class RegisterAppointmentPanel extends JPanel {
     private JRadioButton rbNewPatient;
     private JRadioButton rbExistingPatient;
     private JComboBox<PatientComboItem> cmbExistingPatients;
-    private JTextField txtPatientName;
-    private JTextField txtPatientAddress;
-    private JTextField txtPatientContact;
-    private JTextField txtPatientEmail;
+    
+    
+    
+    
 
     // Appointment Fields
-    private JComboBox<DentistComboItem> cmbDentist;
-    private JComboBox<TreatmentComboItem> cmbTreatment;
-    private JTextField txtAppointmentDate; // Format YYYY-MM-DD
-    private JComboBox<String> cmbTimeSlot;
-    private JTextArea txtNotes;
+    
+    
+     // Format YYYY-MM-DD
+    
+    
 
     // UI Feedback
     private JLabel lblStatus;
     private JProgressBar progressBar;
-    private JButton btnBook;
+    
 
     public RegisterAppointmentPanel(ApiClient apiClient) {
         this(apiClient, null);
@@ -549,19 +549,266 @@ public class RegisterAppointmentPanel extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        headerPanel = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        patientCard = new javax.swing.JPanel();
+        lblPName = new javax.swing.JLabel();
+        txtPatientName = new javax.swing.JTextField();
+        lblPAddress = new javax.swing.JLabel();
+        txtPatientAddress = new javax.swing.JTextField();
+        lblPContact = new javax.swing.JLabel();
+        txtPatientContact = new javax.swing.JTextField();
+        lblPEmail = new javax.swing.JLabel();
+        txtPatientEmail = new javax.swing.JTextField();
+        apptCard = new javax.swing.JPanel();
+        lblDentist = new javax.swing.JLabel();
+        cmbDentist = new javax.swing.JComboBox<>();
+        lblTreatment = new javax.swing.JLabel();
+        cmbTreatment = new javax.swing.JComboBox<>();
+        lblDate = new javax.swing.JLabel();
+        txtAppointmentDate = new javax.swing.JTextField();
+        lblTime = new javax.swing.JLabel();
+        cmbTimeSlot = new javax.swing.JComboBox<>();
+        lblNotes = new javax.swing.JLabel();
+        scrollNotes = new javax.swing.JScrollPane();
+        txtNotes = new javax.swing.JTextArea();
+        actionPanel = new javax.swing.JPanel();
+        btnClear = new javax.swing.JButton();
+        btnBook = new javax.swing.JButton();
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setText("Book Dental Appointment");
+
+        lblDesc.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblDesc.setText("Register patients and schedule appointments with real-time double-booking validation.");
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblDesc)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addGap(4, 4, 4)
+                .addComponent(lblDesc))
+        );
+
+        patientCard.setBackground(new java.awt.Color(255, 255, 255));
+        patientCard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "1. Patient Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+
+        lblPName.setText("Full Name:");
+
+        lblPAddress.setText("Residential Address:");
+
+        lblPContact.setText("Contact Phone Number:");
+
+        lblPEmail.setText("Email Address:");
+
+        javax.swing.GroupLayout patientCardLayout = new javax.swing.GroupLayout(patientCard);
+        patientCard.setLayout(patientCardLayout);
+        patientCardLayout.setHorizontalGroup(
+            patientCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(patientCardLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(patientCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPatientName)
+                    .addComponent(txtPatientAddress)
+                    .addComponent(txtPatientContact)
+                    .addComponent(txtPatientEmail)
+                    .addGroup(patientCardLayout.createSequentialGroup()
+                        .addGroup(patientCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPName)
+                            .addComponent(lblPAddress)
+                            .addComponent(lblPContact)
+                            .addComponent(lblPEmail))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
+        );
+        patientCardLayout.setVerticalGroup(
+            patientCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(patientCardLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblPName)
+                .addGap(4, 4, 4)
+                .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblPAddress)
+                .addGap(4, 4, 4)
+                .addComponent(txtPatientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblPContact)
+                .addGap(4, 4, 4)
+                .addComponent(txtPatientContact, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblPEmail)
+                .addGap(4, 4, 4)
+                .addComponent(txtPatientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        apptCard.setBackground(new java.awt.Color(255, 255, 255));
+        apptCard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "2. Appointment & Treatment Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+
+        lblDentist.setText("Assigned Dentist:");
+
+        lblTreatment.setText("Dental Procedure:");
+
+        lblDate.setText("Date (YYYY-MM-DD):");
+
+        lblTime.setText("Time Slot:");
+
+        cmbTimeSlot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00" }));
+
+        lblNotes.setText("Clinical Notes / Symptoms:");
+
+        txtNotes.setColumns(20);
+        txtNotes.setRows(3);
+        scrollNotes.setViewportView(txtNotes);
+
+        javax.swing.GroupLayout apptCardLayout = new javax.swing.GroupLayout(apptCard);
+        apptCard.setLayout(apptCardLayout);
+        apptCardLayout.setHorizontalGroup(
+            apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(apptCardLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbDentist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbTreatment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(apptCardLayout.createSequentialGroup()
+                        .addGroup(apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDate))
+                        .addGap(16, 16, 16)
+                        .addGroup(apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTime)
+                            .addComponent(cmbTimeSlot, 0, 216, Short.MAX_VALUE)))
+                    .addComponent(scrollNotes)
+                    .addGroup(apptCardLayout.createSequentialGroup()
+                        .addGroup(apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDentist)
+                            .addComponent(lblTreatment)
+                            .addComponent(lblNotes))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
+        );
+        apptCardLayout.setVerticalGroup(
+            apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(apptCardLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblDentist)
+                .addGap(4, 4, 4)
+                .addComponent(cmbDentist, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblTreatment)
+                .addGap(4, 4, 4)
+                .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDate)
+                    .addComponent(lblTime))
+                .addGap(4, 4, 4)
+                .addGroup(apptCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTimeSlot, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(lblNotes)
+                .addGap(4, 4, 4)
+                .addComponent(scrollNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
+        );
+
+        actionPanel.setOpaque(false);
+
+        btnClear.setText("Clear Form");
+
+        btnBook.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBook.setText("Confirm & Book Appointment");
+
+        javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
+        actionPanel.setLayout(actionPanelLayout);
+        actionPanelLayout.setHorizontalGroup(
+            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        actionPanelLayout.setVerticalGroup(
+            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(patientCard, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(apptCard, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                    .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(patientCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(apptCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(actionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel actionPanel;
+    private javax.swing.JPanel apptCard;
+    private javax.swing.JButton btnBook;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JComboBox<Object> cmbDentist;
+    private javax.swing.JComboBox<String> cmbTimeSlot;
+    private javax.swing.JComboBox<Object> cmbTreatment;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDentist;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblNotes;
+    private javax.swing.JLabel lblPAddress;
+    private javax.swing.JLabel lblPContact;
+    private javax.swing.JLabel lblPEmail;
+    private javax.swing.JLabel lblPName;
+    private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTreatment;
+    private javax.swing.JPanel patientCard;
+    private javax.swing.JScrollPane scrollNotes;
+    private javax.swing.JTextField txtAppointmentDate;
+    private javax.swing.JTextArea txtNotes;
+    private javax.swing.JTextField txtPatientAddress;
+    private javax.swing.JTextField txtPatientContact;
+    private javax.swing.JTextField txtPatientEmail;
+    private javax.swing.JTextField txtPatientName;
     // End of variables declaration//GEN-END:variables
 }
