@@ -92,6 +92,43 @@ public final class UITheme {
     }
 
     /**
+     * Retrieves the clinic application logo icon.
+     */
+    public static ImageIcon getAppLogo() {
+        return getAppLogo(32, 22);
+    }
+
+    /**
+     * Retrieves the clinic application logo icon resized to custom dimensions.
+     */
+    public static ImageIcon getAppLogo(int width, int height) {
+        try {
+            java.net.URL url = UITheme.class.getResource("/view/resources/sunrise-logo-small.png");
+            if (url != null) {
+                ImageIcon orig = new ImageIcon(url);
+                Image scaled = orig.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                return new ImageIcon(scaled);
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves the clinic application logo image for window title bars and taskbars.
+     */
+    public static Image getAppLogoImage() {
+        try {
+            java.net.URL url = UITheme.class.getResource("/view/resources/sunrise-logo-small.png");
+            if (url != null) {
+                return new ImageIcon(url).getImage();
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
      * Creates a styled primary action button with modern gradient and subtle hover feedback.
      */
     public static JButton createPrimaryButton(String text) {

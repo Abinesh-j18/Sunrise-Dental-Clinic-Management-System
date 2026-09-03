@@ -50,6 +50,11 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        Image iconImg = UITheme.getAppLogoImage();
+        if (iconImg != null) {
+            setIconImage(iconImg);
+        }
+
         // Full Background Panel
         BackgroundPanel bgPanel = new BackgroundPanel(new GridBagLayout(), 0.0f);
 
@@ -65,7 +70,9 @@ public class LoginFrame extends JFrame {
         ));
 
         // Brand Icon & Title
-        JLabel lblClinicName = new JLabel("SUNRISE DENTAL CLINIC");
+        ImageIcon logoIcon = UITheme.getAppLogo(36, 24);
+        JLabel lblClinicName = new JLabel("SUNRISE DENTAL CLINIC", logoIcon, SwingConstants.LEFT);
+        lblClinicName.setIconTextGap(8);
         lblClinicName.setFont(new Font("Segoe UI", Font.BOLD, 12));
         lblClinicName.setForeground(UITheme.COLOR_ACCENT_HOVER);
         lblClinicName.setAlignmentX(Component.LEFT_ALIGNMENT);

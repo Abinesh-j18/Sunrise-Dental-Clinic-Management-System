@@ -53,6 +53,11 @@ public class MainDashboardFrame extends JFrame {
         setMinimumSize(new Dimension(1024, 768));
         setLocationRelativeTo(null);
 
+        Image iconImg = UITheme.getAppLogoImage();
+        if (iconImg != null) {
+            setIconImage(iconImg);
+        }
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -110,7 +115,9 @@ public class MainDashboardFrame extends JFrame {
         JPanel brandPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 12, 0));
         brandPanel.setOpaque(false);
 
-        JLabel lblBrand = new JLabel("SUNRISE DENTAL CLINIC");
+        ImageIcon logoIcon = UITheme.getAppLogo(36, 24);
+        JLabel lblBrand = new JLabel("SUNRISE DENTAL CLINIC", logoIcon, SwingConstants.LEFT);
+        lblBrand.setIconTextGap(10);
         lblBrand.setFont(new Font("Segoe UI", Font.BOLD, 18));
         lblBrand.setForeground(Color.WHITE);
 
